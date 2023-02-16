@@ -25,7 +25,7 @@ function Boxes({ id, n }) {
     // eslint-disable-next-line
   }, []);
   const parsing = async () => {
-    const URL_info = `https://noembed.com/embed?url=https://www.youtube.com/watch?v=${id}`;
+    const URL_info = `https://noembed.com/embed?url=http://youtu.be/${id}`;
     const data = await (await fetch(URL_info)).json();
     setData(data);
     console.log(data);
@@ -36,7 +36,7 @@ function Boxes({ id, n }) {
         <img src={data.thumbnail_url} alt="Thumbnail" />
       </div>
     </a>
-    <p><b>{data.title}</b></p>
+    <p>&nbsp;<b>{data.title}</b></p>
   </div>;
 }
 
