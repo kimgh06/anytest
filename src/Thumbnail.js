@@ -4,7 +4,11 @@ import './Thumbnail.scss';
 function Thumbnail() {
   const [id, setId] = useState([]);
   useEffect(() => {
-    setId(['h4afwqrOeaw', "6okHyCLorj4", "aww8FQltBgc"]);
+    let data = ['https://www.youtube.com/watch?v=h4afwqrOeaw', "https://www.youtube.com/watch?v=6okHyCLorj4", "https://www.youtube.com/watch?v=aww8FQltBgc"];
+    for (let i = 0; i < data.length; i++) {
+      data[i] = data[i].slice(-11);
+    }
+    setId(data);
   }, []);
   return <div className="thumbnail">
     <h1>Thumbnail test</h1>
