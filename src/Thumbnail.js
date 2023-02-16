@@ -32,7 +32,7 @@ function Boxes({ id, n }) {
   }
   return <div className={`box ${n + 1}`} onClick={() => { window.open(`http://youtu.be/${id}`) }} title={'보러가기'}>
     <div className="image">
-      <img src={data.thumbnail_url} alt="Thumbnail" />
+      <img src={data.thumbnail_url} alt="Thumbnail" />asdf
     </div>
     <p>&nbsp;<b>{data.title}</b></p>
   </div>;
