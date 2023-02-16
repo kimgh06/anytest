@@ -4,7 +4,7 @@ import './Thumbnail.scss';
 function Thumbnail() {
   const [id, setId] = useState([]);
   useEffect(() => {
-    let data = ['https://www.youtube.com/watch?v=h4afwqrOeaw', "https://www.youtube.com/watch?v=6okHyCLorj4", "https://www.youtube.com/watch?v=aww8FQltBgc"];
+    let data = ['https://www.youtube.com/watch?v=h4afwqrOeaw', "https://www.youtube.com/watch?v=6okHyCLorj4", "https://www.youtube.com/watch?v=aww8FQltBgc", "https://www.youtube.com/watch?v=64wI6gc1Gv0", "https://www.youtube.com/watch?v=wwdOu__Uba4"];
     for (let i = 0; i < data.length; i++) {
       data[i] = data[i].slice(-11);
     }
@@ -30,12 +30,10 @@ function Boxes({ id, n }) {
     setData(data);
     console.log(data);
   }
-  return <div className={`box ${n + 1}`}>
-    <a href={`http://youtu.be/${id}`} target="_blank" rel="noreferrer">
-      <div className="image">
-        <img src={data.thumbnail_url} alt="Thumbnail" />
-      </div>
-    </a>
+  return <div className={`box ${n + 1}`} onClick={() => { window.open(`http://youtu.be/${id}`) }}>
+    <div className="image">
+      <img src={data.thumbnail_url} alt="Thumbnail" />
+    </div>
     <p>&nbsp;<b>{data.title}</b></p>
   </div>;
 }
