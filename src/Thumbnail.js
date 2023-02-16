@@ -28,10 +28,13 @@ function Boxes({ id, n }) {
     const URL_info = `https://noembed.com/embed?url=https://www.youtube.com/watch?v=${id}`;
     const data = await (await fetch(URL_info)).json();
     setData(data);
+    console.log(data);
   }
   return <div className={`box ${n + 1}`}>
     <a href={`http://youtu.be/${id}`} target="_blank" rel="noreferrer">
-      <img src={`https://img.youtube.com/vi/${id}/0.jpg`} alt="Thumbnail" />
+      <div className="image">
+        <img src={data.thumbnail_url} alt="Thumbnail" />
+      </div>
     </a>
     <p><b>{data.title}</b></p>
   </div>;

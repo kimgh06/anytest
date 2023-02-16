@@ -3,5 +3,17 @@
     width: 480px;
     margin: auto;
     display: block;
+
+    .box {
+      .image {
+        height: 269px;
+        overflow: hidden;
+
+        img {
+          max-height: initial;
+          margin-top: -9.4%;
+        }
+      }
+    }
   }
 }
