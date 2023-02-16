@@ -8,13 +8,28 @@ function Thumbnail() {
   }, []);
   return <div className="thumbnail">
     {id.map((id, n) => {
-      return <div key={n} className={`box ${n + 1}`}>
-        <a href={`http://youtu.be/${id}`} target="_blank">
-          <img src={`https://img.youtube.com/vi/${id}/0.jpg`} alt="Thumbnail" />
-        </a>
-      </div>;
+      return <Boxes key={n} id={id} n={n} />
     }
     )}
+  </div>;
+}
+
+function Boxes({ id, n }) {
+  const [data, setData] = useState([]);
+  const parsing = async () => {
+    const url = `https://noembed.com/embed?url=https://www.youtube.com/watch?v=${id}`;
+    const data = await (await fetch(url)).json();
+    setData(data);
+    console.log(data);
+  }
+  useEffect(() => {
+    parsing();
+  }, [])
+  return <div className={`box ${n + 1}`}>
+    <a href={`http://youtu.be/${id}`} target="_blank" rel="noreferrer">
+      <img src={`https://img.youtube.com/vi/${id}/0.jpg`} alt="Thumbnail" />
+      {data.title}
+    </a>
   </div>;
 }
 
