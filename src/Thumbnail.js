@@ -8,7 +8,9 @@ function Thumbnail() {
   }, []);
   return <div className="thumbnail">
     <h1>Thumbnail test</h1>
-    {id.map((id, n) => <Boxes key={n} id={id} n={n} />)}
+    <div className="boxes">
+      {id.map((id, n) => <Boxes key={n} id={id} n={n} />)}
+    </div>
   </div>;
 }
 
@@ -28,7 +30,7 @@ function Boxes({ id, n }) {
     <a href={`http://youtu.be/${id}`} target="_blank" rel="noreferrer">
       <img src={`https://img.youtube.com/vi/${id}/0.jpg`} alt="Thumbnail" />
     </a>
-    <b>{data.title}</b>
+    <p><b>{data.title}</b></p>
   </div>;
 }
 
