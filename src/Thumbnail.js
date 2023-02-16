@@ -30,7 +30,7 @@ function Boxes({ id, n }) {
     setData(data);
     console.log(data);
   }
-  return <div className={`box ${n + 1}`} onClick={() => { window.open(`http://youtu.be/${id}`) }}>
+  return <div className={`box ${n + 1}`} onClick={() => { window.open(`http://youtu.be/${id}`) }} title={'보러가기'}>
     <div className="image">
       <img src={data.thumbnail_url} alt="Thumbnail" />
     </div>
