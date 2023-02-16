@@ -25,10 +25,9 @@ function Boxes({ id, n }) {
     // eslint-disable-next-line
   }, []);
   const parsing = async () => {
-    const url = `https://noembed.com/embed?url=https://www.youtube.com/watch?v=${id}`;
-    const data = await (await fetch(url)).json();
+    const URL_info = `https://noembed.com/embed?url=https://www.youtube.com/watch?v=${id}`;
+    const data = await (await fetch(URL_info)).json();
     setData(data);
-    console.log(data);
   }
   return <div className={`box ${n + 1}`}>
     <a href={`http://youtu.be/${id}`} target="_blank" rel="noreferrer">
