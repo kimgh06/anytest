@@ -1,17 +1,27 @@
 .thumbnail {
   .boxes {
-    width: 480px;
+    width: 400px;
     margin: auto;
-    display: block;
+    display: flexbox;
+    flex-wrap: wrap;
 
     .box {
+      display: flex;
+      margin-bottom: 20px;
+
       .image {
-        height: 269px;
+        margin: auto;
+        width: 200px;
+        height: 112px;
         overflow: hidden;
+        border: 1px solid black;
+        border-radius: 1px;
+        margin-right: 3px;
 
         img {
           max-height: initial;
-          margin-top: -9.4%;
+          width: 200px;
+          margin-top: -9.3%;
         }
       }
     }
