@@ -8,11 +8,13 @@
     .box {
       display: flex;
       margin-bottom: 20px;
+      cursor: pointer;
 
       .image {
         margin: auto;
-        width: 200px;
-        height: 112px;
+        min-width: 189px;
+        min-height: 106px;
+        max-height: 106px;
         overflow: hidden;
         border: 1px solid black;
         border-radius: 1px;
@@ -20,7 +22,7 @@
 
         img {
           max-height: initial;
-          width: 200px;
+          height: 142px;
           margin-top: -9.3%;
         }
       }
