@@ -4,7 +4,7 @@ import './Thumbnail.scss';
 function Thumbnail() {
   const [id, setId] = useState([]);
   useEffect(() => {
-    setId(['h4afwqrOeaw', "6okHyCLorj4"]);
+    setId(['h4afwqrOeaw', "6okHyCLorj4", "aww8FQltBgc"]);
   }, []);
   return <div className="thumbnail">
     <h1>Thumbnail test</h1>
@@ -16,6 +16,7 @@ function Boxes({ id, n }) {
   const [data, setData] = useState([]);
   useEffect(() => {
     parsing();
+    // eslint-disable-next-line
   }, []);
   const parsing = async () => {
     const url = `https://noembed.com/embed?url=https://www.youtube.com/watch?v=${id}`;
