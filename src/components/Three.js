@@ -1,9 +1,9 @@
 import React from "react";
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'; //3D 모델 불러오기 위한 로더
+import * as THREE from 'three'; //three.js 불러오기
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import './Three.scss';
-import * as THREE from 'three';
 
 function Three() {
   return <div className="Three">
@@ -11,7 +11,7 @@ function Three() {
       <OrbitControls autoRotate={true} />
       <mesh>
         <ambientLight intensity={1} />
-        <boxGeometry args={[1, 1, 1]} />
+        <boxGeometry args={[1, 1, 1]} /> //
         <meshStandardMaterial attach={'material'} color={'gray'} />
       </mesh>
     </Canvas>
