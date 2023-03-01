@@ -11,7 +11,7 @@ function Three() {
       <OrbitControls autoRotate={true} />
       <mesh>
         <ambientLight intensity={1} />
-        <boxGeometry args={[1, 1, 1]} /> //
+        <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial attach={'material'} color={'gray'} />
       </mesh>
     </Canvas>
