@@ -1,4 +1,4 @@
-import React, { useState, useRef, Suspense } from "react";
+import React, { useState, useRef, Suspense, useEffect } from "react";
 // import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'; //3D 모델 불러오기 위한 로더
 import * as THREE from 'three'; //three.js 불러오기
 import { Canvas, useFrame } from "@react-three/fiber";
@@ -8,7 +8,7 @@ import './Three.scss';
 
 function Three() {
   return <div className="Three">
-    <Canvas id="canvas" shadows={true} camera={{ position: [3, 7, -3] }}>
+    <Canvas id="canvas" shadows={true} camera={{ position: [4, 7, -4] }}>
       <ambientLight intensity={0.2} />
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
@@ -18,9 +18,37 @@ function Three() {
         <Icosahedron />
         <Sun position={[-2, 5, -2]} />
         <axesHelper args={[5]} />
+        <MovingOb position={[-2, 0, -2]} />
       </Suspense>
     </Canvas>
   </div>;
+}
+
+function MovingOb(props) {
+  const mesh = useRef(null);
+  function moveob(key) {
+    const distance = 0.1;
+    if (key === 'ArrowUp') {
+      mesh.current.position.z -= distance;
+    }
+    else if (key === 'ArrowDown') {
+      mesh.current.position.z += distance;
+    }
+    else if (key === 'ArrowLeft') {
+      mesh.current.position.x -= distance;
+    }
+    else if (key === 'ArrowRight') {
+      mesh.current.position.x += distance;
+    }
+  }
+  useEffect(e => {
+    window.addEventListener('keydown', e => { moveob(e.key) });
+  }, []);
+  // keyPress(e => moveob(e.key));
+  return <mesh ref={mesh} {...props} >
+    <boxBufferGeometry args={[0.5, 1, 0.5]} />
+    <meshPhongMaterial color={props.color} />
+  </mesh>;
 }
 
 function Platform(props) {
