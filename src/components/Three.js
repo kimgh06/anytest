@@ -15,6 +15,7 @@ function Three() {
         <Box position={[3, 0, 0]} />
         <Platform />
         <EquilateralTriangle />
+        <Sun position={[-1, 5, -1]} />
         <axesHelper args={[5]} />
       </Suspense>
     </Canvas>
@@ -50,6 +51,16 @@ function EquilateralTriangle() {
   );
 }
 
+const Sun = props => {
+  return (
+    <mesh {...props}>
+      <pointLight castShadow />
+      <sphereBufferGeometry args={[0.3]} />
+      <meshPhongMaterial emissive="yellow" />
+    </mesh>
+  );
+};
+
 function Box(props) {
   const mesh = useRef(null);
   useFrame(e => mesh.current.rotation.y = mesh.current.rotation.z += 0.01);
@@ -68,7 +79,7 @@ function Box(props) {
   >
     <ambientLight intensity={1} />
     <boxGeometry args={[1, 1, 1]} />
-    <meshPhysicalMaterial attach={'material'} color={modo ? 'hotpink' : hovered ? 'orange' : 'gray'} />
+    <meshStandardMaterial attach={'material'} color={modo ? 'hotpink' : hovered ? 'orange' : 'gray'} />
   </mesh>;
 }
 
