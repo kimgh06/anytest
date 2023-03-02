@@ -8,32 +8,35 @@ import './Three.scss';
 
 function Three() {
   return <div className="Three">
-    <Canvas id="canvas" camera={{ position: [3, 3, 3] }}>
+    <Canvas id="canvas" shadows={true} camera={{ position: [3, 3, 3] }}>
+      <ambientLight intensity={0.2} />
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
         <Box position={[0, 0, 3]} />
         <Box position={[3, 0, 0]} />
-        <Platform />
-        <EquilateralTriangle />
-        <Sun position={[-1, 5, -1]} />
+        <Platform position={[0, -1, 0]} />
+        <Icosahedron />
+        <Sun position={[-3, 5, -3]} />
         <axesHelper args={[5]} />
       </Suspense>
     </Canvas>
   </div>;
 }
 
-function Platform() {
+function Platform(props) {
   const mesh = useRef(null);
   return <mesh
     ref={mesh}
-    scale={1}
-    position={[0, -1, 0]}>
+    castShadow
+    receiveShadow
+    {...props}
+  >
     <boxGeometry args={[15, 1, 10]} />
     <meshBasicMaterial color={'green'} />
   </mesh>;
 }
 
-function EquilateralTriangle() {
+function Icosahedron() {
   const mesh = useRef(null);
   useFrame(e => mesh.current.rotation.x = mesh.current.rotation.z += 0.01);
 
@@ -45,8 +48,10 @@ function EquilateralTriangle() {
   return (
     <mesh geometry={geometry}
       ref={mesh}
-      position={[0, 2, 0]}>
-      <meshBasicMaterial color={"blueviolet"} />
+      position={[0, 2, 0]}
+      castShadow
+      receiveShadow>
+      <meshPhysicalMaterial color={"blueviolet"} />
     </mesh>
   );
 }
@@ -76,6 +81,8 @@ function Box(props) {
     onClick={e => setAct(e => !e)}
     onPointerDown={e => setModo(true)}
     onPointerUp={e => setModo(false)}
+    castShadow
+    receiveShadow
   >
     <ambientLight intensity={1} />
     <boxGeometry args={[1, 1, 1]} />
