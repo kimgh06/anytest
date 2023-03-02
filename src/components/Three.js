@@ -31,8 +31,8 @@ function Platform(props) {
     receiveShadow
     {...props}
   >
-    <boxGeometry args={[15, 1, 10]} />
-    <meshBasicMaterial color={'green'} />
+    <boxGeometry args={[15, 1, 15]} />
+    <meshStandardMaterial color={'darkgreen'} />
   </mesh>;
 }
 
@@ -43,7 +43,7 @@ function Icosahedron() {
   const radius = 1;
   const detail = 1;
 
-  const geometry = new THREE.IcosahedronBufferGeometry(radius, detail);
+  const geometry = new THREE.IcosahedronGeometry(radius, detail);
 
   return (
     <mesh geometry={geometry}
