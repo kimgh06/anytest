@@ -1,10 +1,10 @@
 import React, { useState, useRef, Suspense } from "react";
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'; //3D 모델 불러오기 위한 로더
+// import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'; //3D 모델 불러오기 위한 로더
 import * as THREE from 'three'; //three.js 불러오기
-import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 import './Three.scss';
-import { BufferAttribute, BufferGeometry } from "three";
+// import { BufferAttribute, BufferGeometry } from "three";
 
 function Three() {
   return <div className="Three">
