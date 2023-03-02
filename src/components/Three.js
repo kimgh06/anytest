@@ -8,7 +8,7 @@ import './Three.scss';
 
 function Three() {
   return <div className="Three">
-    <Canvas id="canvas" shadows={true} camera={{ position: [3, 3, 3] }}>
+    <Canvas id="canvas" shadows={true} camera={{ position: [3, 7, -3] }}>
       <ambientLight intensity={0.2} />
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
@@ -16,7 +16,7 @@ function Three() {
         <Box position={[3, 0, 0]} />
         <Platform position={[0, -1, 0]} />
         <Icosahedron />
-        <Sun position={[-3, 5, -3]} />
+        <Sun position={[-2, 5, -2]} />
         <axesHelper args={[5]} />
       </Suspense>
     </Canvas>
@@ -39,12 +39,9 @@ function Platform(props) {
 function Icosahedron() {
   const mesh = useRef(null);
   useFrame(e => mesh.current.rotation.x = mesh.current.rotation.z += 0.01);
-
   const radius = 1;
   const detail = 1;
-
   const geometry = new THREE.IcosahedronGeometry(radius, detail);
-
   return (
     <mesh geometry={geometry}
       ref={mesh}
@@ -61,7 +58,7 @@ const Sun = props => {
     <mesh {...props}>
       <pointLight castShadow />
       <sphereBufferGeometry args={[0.3]} />
-      <meshPhongMaterial emissive="yellow" />
+      <meshPhongMaterial emissive="darkyellow" />
     </mesh>
   );
 };
