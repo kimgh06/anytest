@@ -2,8 +2,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 700px;
-  width: calc(100vw - 2px);
+  height: calc(100% - 2px);
+  width: calc(100% - 2px);
   border: 1px solid black;
 
   #canvas {

@@ -9,21 +9,12 @@ function Three() {
   return <div className="Three">
     <Canvas id="canvas">
       <Suspense fallback={null}>
-        <OrbitControls autoRotate={true} />
+        <OrbitControls autoRotate={false} />
         <Box position={[0, 0, 0]} />
-        {/* <Model /> */}
+        <axesHelper args={[5]} />
       </Suspense>
     </Canvas>
   </div>;
-}
-
-function Model() {
-  const gltf = useLoader(GLTFLoader, '../3d/scene.gltf');
-  return (
-    <Suspense fallback={null}>
-      <primitive object={gltf.scene} />
-    </Suspense>
-  )
 }
 
 function Box(props) {
