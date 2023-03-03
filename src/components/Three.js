@@ -7,8 +7,11 @@ import './Three.scss';
 // import { BufferAttribute, BufferGeometry } from "three";
 
 function Three() {
+  const [camposi, setCamposi] = useState({
+    position: [4, 7, -4],
+  });
   return <div className="Three">
-    <Canvas id="canvas" shadows={true} camera={{ position: [4, 7, -4] }}>
+    <Canvas id="canvas" shadows={true} camera={camposi}>
       <ambientLight intensity={0.2} />
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
