@@ -1,4 +1,4 @@
-import React, { useState, useRef, Suspense, useEffect } from "react";
+import React, { useState, useRef, Suspense, useEffect, useCallback } from "react";
 // import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'; //3D 모델 불러오기 위한 로더
 import * as THREE from 'three'; //three.js 불러오기
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
@@ -42,16 +42,16 @@ function MovingOb(props) {
       mesh.current.position.x += distance;
     }
   }
-  function movecam() {
+  const movecam = useCallback(e => {
     camera.lookAt(mesh.current.position);
-  }
+  }, [camera, mesh]);
   useEffect(e => {
     window.addEventListener('keydown', e => {
       moveob(e.key);
       movecam();
     });
+    // eslint-disable-next-line
   }, []);
-  // keyPress(e => moveob(e.key));
   return <mesh ref={mesh} {...props} castShadow receiveShadow >
     <boxBufferGeometry args={[0.5, 1, 0.5]} />
     <meshStandardMaterial color={'blue'} />
