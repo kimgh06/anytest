@@ -27,11 +27,17 @@ function Three() {
   </div>;
 }
 
+function sleep(ms) {
+  const loopTime = Date.now() + ms;
+  while (Date.now() < loopTime) { }
+}
+
 function MovingOb(props) {
   const mesh = useRef(null);
   const { camera } = useThree();
   function moveob(key) {
     const distance = 0.1;
+    console.log(key);
     if (key === 'ArrowUp') {
       mesh.current.position.z -= distance;
     }
@@ -43,6 +49,16 @@ function MovingOb(props) {
     }
     else if (key === 'ArrowRight') {
       mesh.current.position.x += distance;
+    }
+    else if (key === 'w') {
+      for (let i = 0; i < 20; i++) {
+        mesh.current.position.y += distance;
+      }
+    }
+    else if (key === 's') {
+      for (let i = 0; i < 20; i++) {
+        mesh.current.position.y -= distance;
+      }
     }
   }
   const movecam = useCallback(e => {
