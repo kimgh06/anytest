@@ -1,7 +1,7 @@
 import React, { useState, useRef, Suspense, useEffect } from "react";
 // import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'; //3D 모델 불러오기 위한 로더
 import * as THREE from 'three'; //three.js 불러오기
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import './Three.scss';
 // import { BufferAttribute, BufferGeometry } from "three";
@@ -26,6 +26,7 @@ function Three() {
 
 function MovingOb(props) {
   const mesh = useRef(null);
+  const { camera } = useThree();
   function moveob(key) {
     const distance = 0.1;
     if (key === 'ArrowUp') {
@@ -41,13 +42,19 @@ function MovingOb(props) {
       mesh.current.position.x += distance;
     }
   }
+  function movecam() {
+    camera.lookAt(mesh.current.position);
+  }
   useEffect(e => {
-    window.addEventListener('keydown', e => { moveob(e.key) });
+    window.addEventListener('keydown', e => {
+      moveob(e.key);
+      movecam();
+    });
   }, []);
   // keyPress(e => moveob(e.key));
-  return <mesh ref={mesh} {...props} >
+  return <mesh ref={mesh} {...props} castShadow receiveShadow >
     <boxBufferGeometry args={[0.5, 1, 0.5]} />
-    <meshPhongMaterial color={props.color} />
+    <meshStandardMaterial color={'blue'} />
   </mesh>;
 }
 
