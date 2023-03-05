@@ -27,17 +27,18 @@ function Three() {
   </div>;
 }
 
-function sleep(ms) {
-  const loopTime = Date.now() + ms;
-  while (Date.now() < loopTime) { }
-}
-
 function MovingOb(props) {
   const mesh = useRef(null);
   const { camera } = useThree();
+  const [jump, setJump] = useState(0);
+  const [isjump, setIsjump] = useState(false);
+  useFrame(e => {
+    if (isjump) {
+      setJump(Math.sin(mesh.current.position.y * 2) * 0.1);
+    }
+  });
   function moveob(key) {
     const distance = 0.1;
-    console.log(key);
     if (key === 'ArrowUp') {
       mesh.current.position.z -= distance;
     }
@@ -50,15 +51,13 @@ function MovingOb(props) {
     else if (key === 'ArrowRight') {
       mesh.current.position.x += distance;
     }
-    else if (key === 'w') {
-      for (let i = 0; i < 20; i++) {
-        mesh.current.position.y += distance;
-      }
-    }
-    else if (key === 's') {
-      for (let i = 0; i < 20; i++) {
-        mesh.current.position.y -= distance;
-      }
+    else if (key === ' ') {
+      setIsjump(true);
+      console.log("jumping");
+      setTimeout(() => {
+        setIsjump(false);
+        console.log("done");
+      }, 500);
     }
   }
   const movecam = useCallback(e => {
@@ -71,9 +70,12 @@ function MovingOb(props) {
     });
     // eslint-disable-next-line
   }, []);
-  return <mesh ref={mesh} {...props} castShadow receiveShadow >
+  return <mesh ref={mesh}
+    {...props}
+    castShadow receiveShadow >
     <boxBufferGeometry args={[0.5, 1, 0.5]} />
     <meshStandardMaterial color={'blue'} />
+    <meshScale args={[1, 0 + jump, 1]} />
   </mesh>;
 }
 
