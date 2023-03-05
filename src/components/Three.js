@@ -7,9 +7,9 @@ import './Three.scss';
 // import { BufferAttribute, BufferGeometry } from "three";
 
 function Three() {
-  const [camposi, setCamposi] = useState({
+  const camposi = {
     position: [4, 7, -4],
-  });
+  };
   return <div className="Three">
     <Canvas id="canvas" shadows={true} camera={camposi}>
       <ambientLight intensity={0.2} />
@@ -34,7 +34,7 @@ function MovingOb(props) {
   const [isjump, setIsjump] = useState(false);
   useFrame(e => {
     if (isjump) {
-      setJump(Math.sin(mesh.current.position.y * 1) * 0.5);
+      setJump(e => Math.sin(mesh.current.position.y * 2) * 1);
     }
   });
   function moveob(key) {
@@ -56,6 +56,7 @@ function MovingOb(props) {
       console.log("jumping");
       setTimeout(() => {
         setIsjump(false);
+        setJump(0);
       }, 500);
     }
   }
@@ -70,7 +71,7 @@ function MovingOb(props) {
     // eslint-disable-next-line
   }, []);
   return <mesh ref={mesh}
-    position={[-2, 0.5 + jump, -2]}
+    position={[-2, 0.1 + jump, -2]}
     castShadow receiveShadow >
     <boxBufferGeometry args={[0.5, 1, 0.5]} />
     <meshStandardMaterial color={'blue'} />
