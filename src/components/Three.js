@@ -21,7 +21,7 @@ function Three() {
         <Icosahedron />
         <Sun position={[-2, 5, -2]} />
         <axesHelper args={[5]} />
-        <MovingOb position={[-2, 0, -2]} />
+        <MovingOb />
       </Suspense>
     </Canvas>
   </div>;
@@ -34,7 +34,7 @@ function MovingOb(props) {
   const [isjump, setIsjump] = useState(false);
   useFrame(e => {
     if (isjump) {
-      setJump(Math.sin(mesh.current.position.y * 2) * 0.1);
+      setJump(Math.sin(mesh.current.position.y * 1) * 0.5);
     }
   });
   function moveob(key) {
@@ -56,7 +56,6 @@ function MovingOb(props) {
       console.log("jumping");
       setTimeout(() => {
         setIsjump(false);
-        console.log("done");
       }, 500);
     }
   }
@@ -71,11 +70,10 @@ function MovingOb(props) {
     // eslint-disable-next-line
   }, []);
   return <mesh ref={mesh}
-    {...props}
+    position={[-2, 0.5 + jump, -2]}
     castShadow receiveShadow >
     <boxBufferGeometry args={[0.5, 1, 0.5]} />
     <meshStandardMaterial color={'blue'} />
-    <meshScale args={[1, 0 + jump, 1]} />
   </mesh>;
 }
 
