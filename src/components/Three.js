@@ -40,7 +40,6 @@ function MovingOb(props) {
     }
     else {
       setJump(e => Math.sin(0));
-      console.log(Math.asin(jump) * 180 / Math.PI);
     }
   });
   function moveob(key) {
@@ -59,15 +58,15 @@ function MovingOb(props) {
     }
     else if (key === ' ') {
       setIsjump(true);
-      console.log("jumping");
       setTimeout(() => {
+        console.log(Math.asin(jump) * 180 / Math.PI);
         setIsjump(false);
       }, 300); // 18프레임
     }
   }
-  const movecam = useCallback(e => {
+  const movecam = e => {
     camera.lookAt(mesh.current.position);
-  }, [camera, mesh]);
+  };
   useEffect(e => {
     window.addEventListener('keydown', e => {
       moveob(e.key);
