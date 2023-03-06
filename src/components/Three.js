@@ -21,7 +21,7 @@ function Three() {
         <Icosahedron />
         <Sun position={[-2, 5, -2]} />
         <axesHelper args={[5]} />
-        <Tree position={[-6, 0, 6]} />
+        <Tree position={[-5, 0, 5]} />
         <MovingOb />
       </Suspense>
     </Canvas>
@@ -90,6 +90,7 @@ function Tree(props) {
   const z = props.position[2];
   return <mesh
     ref={mesh}
+    castShadow
     receiveShadow
   >
     <ambientLight intensity={1} />
@@ -112,6 +113,8 @@ function Tree(props) {
 function NoBox(props) {
   return <mesh
     position={props.position}
+    castShadow
+    receiveShadow
   >
     <boxGeometry args={[1, 1, 1]} />
     <meshStandardMaterial opacity={props.opacity} transparent color={props.color} />
