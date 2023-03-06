@@ -8,7 +8,7 @@ import './Three.scss';
 
 function Three() {
   const camposi = {
-    position: [4, 7, -4],
+    position: [6, 8, -6],
   };
   return <div className="Three">
     <Canvas id="canvas" shadows={true} camera={camposi}>
@@ -93,8 +93,7 @@ function Tree(props) {
     receiveShadow
   >
     <ambientLight intensity={1} />
-    <boxGeometry args={[1, 1, 1]} />
-    <NoBox position={[x, y, z]} color={'brown'} />
+    <NoBox position={[x, y, z]} color={'darkbrown'} />
     <NoBox position={[x, y + 1, z]} color={'brown'} />
     <NoBox position={[x, y + 2, z]} color={'brown'} />
     <NoBox position={[x, y + 3, z]} color={'brown'} />
