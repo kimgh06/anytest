@@ -34,7 +34,11 @@ function MovingOb(props) {
   const [isjump, setIsjump] = useState(false);
   useFrame(e => {
     if (isjump) {
-      setJump(e => Math.sin(mesh.current.position.y * 2) * 1);
+      setJump(e => Math.sin((mesh.current.position.y - 50) * 1) * 1);
+    }
+    else {
+      setJump(e => Math.sin(0));
+      console.log(Math.asin(jump) * 180 / Math.PI);
     }
   });
   function moveob(key) {
@@ -56,8 +60,7 @@ function MovingOb(props) {
       console.log("jumping");
       setTimeout(() => {
         setIsjump(false);
-        setJump(0);
-      }, 500);
+      }, 300); // 18프레임
     }
   }
   const movecam = useCallback(e => {
@@ -71,7 +74,7 @@ function MovingOb(props) {
     // eslint-disable-next-line
   }, []);
   return <mesh ref={mesh}
-    position={[-2, 0.1 + jump, -2]}
+    position={[-2, 0 + jump, -2]}
     castShadow receiveShadow >
     <boxBufferGeometry args={[0.5, 1, 0.5]} />
     <meshStandardMaterial color={'blue'} />
@@ -103,7 +106,7 @@ function Icosahedron() {
       position={[0, 2, 0]}
       castShadow
       receiveShadow>
-      <meshPhysicalMaterial color={"blueviolet"} />
+      <meshStandardMaterial wireframe color={"blueviolet"} />
     </mesh>
   );
 }
