@@ -29,14 +29,14 @@ function Three() {
 
 function MovingOb(props) {
   const mesh = useRef(null);
-  const { camera } = useThree();
   const [jump, setJump] = useState(0);
   const [isjump, setIsjump] = useState(false);
   const [x, setX] = useState(0);
   const [z, setZ] = useState(0);
   useFrame(e => {
     if (isjump) {
-      setJump(e => Math.sin((mesh.current.position.y - 50) * 1) * 1);
+      setJump(e => Math.sin(mesh.current.position.y - 50));
+      console.log(Math.asin(jump) * 180 / Math.PI);
     }
     else {
       setJump(e => Math.sin(0));
@@ -59,13 +59,13 @@ function MovingOb(props) {
     else if (key === ' ') {
       setIsjump(true);
       setTimeout(() => {
-        console.log(Math.asin(jump) * 180 / Math.PI);
         setIsjump(false);
       }, 300); // 18프레임
     }
   }
   const movecam = e => {
-    camera.lookAt(mesh.current.position);
+    const mesh = new THREE.Mesh();
+    mesh.lookAt([0, 0, 0]);
   };
   useEffect(e => {
     window.addEventListener('keydown', e => {
