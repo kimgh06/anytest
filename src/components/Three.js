@@ -8,7 +8,7 @@ import './Three.scss';
 
 function Three() {
   const camposi = {
-    position: [6, 8, -6],
+    position: [2, 8, 6],
   };
   return <div className="Three">
     <Canvas id="canvas" shadows={true} camera={camposi}>
@@ -48,16 +48,16 @@ function MovingOb(props) {
     if (key === 'ArrowUp') {
       setZ(e => e - distance);
     }
-    else if (key === 'ArrowDown') {
+    if (key === 'ArrowDown') {
       setZ(e => e + distance);
     }
-    else if (key === 'ArrowLeft') {
+    if (key === 'ArrowLeft') {
       setX(e => e - distance);
     }
-    else if (key === 'ArrowRight') {
+    if (key === 'ArrowRight') {
       setX(e => e + distance);
     }
-    else if (key === ' ') {
+    if (key === ' ') {
       setIsjump(true);
       setTimeout(() => {
         setIsjump(false);
@@ -93,7 +93,7 @@ function Tree(props) {
     receiveShadow
   >
     <ambientLight intensity={1} />
-    <NoBox position={[x, y, z]} color={'darkbrown'} />
+    <NoBox position={[x, y, z]} color={'brown'} />
     <NoBox position={[x, y + 1, z]} color={'brown'} />
     <NoBox position={[x, y + 2, z]} color={'brown'} />
     <NoBox position={[x, y + 3, z]} color={'brown'} />
