@@ -32,6 +32,8 @@ function MovingOb(props) {
   const { camera } = useThree();
   const [jump, setJump] = useState(0);
   const [isjump, setIsjump] = useState(false);
+  const [x, setX] = useState(0);
+  const [z, setZ] = useState(0);
   useFrame(e => {
     if (isjump) {
       setJump(e => Math.sin((mesh.current.position.y - 50) * 1) * 1);
@@ -44,16 +46,16 @@ function MovingOb(props) {
   function moveob(key) {
     const distance = 0.1;
     if (key === 'ArrowUp') {
-      mesh.current.position.z -= distance;
+      setZ(e => e - distance);
     }
     else if (key === 'ArrowDown') {
-      mesh.current.position.z += distance;
+      setZ(e => e + distance);
     }
     else if (key === 'ArrowLeft') {
-      mesh.current.position.x -= distance;
+      setX(e => e - distance);
     }
     else if (key === 'ArrowRight') {
-      mesh.current.position.x += distance;
+      setX(e => e + distance);
     }
     else if (key === ' ') {
       setIsjump(true);
@@ -74,7 +76,7 @@ function MovingOb(props) {
     // eslint-disable-next-line
   }, []);
   return <mesh ref={mesh}
-    position={[-2, 0 + jump, -2]}
+    position={[-2 + x, 0 + jump, -2 + z]}
     castShadow receiveShadow >
     <boxBufferGeometry args={[0.5, 1, 0.5]} />
     <meshStandardMaterial color={'blue'} />
