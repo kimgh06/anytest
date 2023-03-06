@@ -21,6 +21,7 @@ function Three() {
         <Icosahedron />
         <Sun position={[-2, 5, -2]} />
         <axesHelper args={[5]} />
+        <Tree position={[-6, 0, 6]} />
         <MovingOb />
       </Suspense>
     </Canvas>
@@ -79,6 +80,42 @@ function MovingOb(props) {
     castShadow receiveShadow >
     <boxBufferGeometry args={[0.5, 1, 0.5]} />
     <meshStandardMaterial color={'blue'} />
+  </mesh>;
+}
+
+function Tree(props) {
+  const mesh = useRef(null);
+  const x = props.position[0];
+  const y = props.position[1];
+  const z = props.position[2];
+  return <mesh
+    ref={mesh}
+    receiveShadow
+  >
+    <ambientLight intensity={1} />
+    <boxGeometry args={[1, 1, 1]} />
+    <NoBox position={[x, y, z]} color={'brown'} />
+    <NoBox position={[x, y + 1, z]} color={'brown'} />
+    <NoBox position={[x, y + 2, z]} color={'brown'} />
+    <NoBox position={[x, y + 3, z]} color={'brown'} />
+    <NoBox position={[x, y + 5, z]} opacity={0.7} color={'darkgreen'} />
+    <NoBox position={[x + 1, y + 3, z]} opacity={0.7} color={'darkgreen'} />
+    <NoBox position={[x + 1, y + 4, z]} opacity={0.7} color={'darkgreen'} />
+    <NoBox position={[x - 1, y + 3, z]} opacity={0.7} color={'darkgreen'} />
+    <NoBox position={[x - 1, y + 4, z]} opacity={0.7} color={'darkgreen'} />
+    <NoBox position={[x, y + 3, z + 1]} opacity={0.7} color={'darkgreen'} />
+    <NoBox position={[x, y + 4, z + 1]} opacity={0.7} color={'darkgreen'} />
+    <NoBox position={[x, y + 3, z - 1]} opacity={0.7} color={'darkgreen'} />
+    <NoBox position={[x, y + 4, z - 1]} opacity={0.7} color={'darkgreen'} />
+  </mesh>;
+}
+
+function NoBox(props) {
+  return <mesh
+    position={props.position}
+  >
+    <boxGeometry args={[1, 1, 1]} />
+    <meshStandardMaterial opacity={props.opacity} transparent color={props.color} />
   </mesh>;
 }
 
