@@ -6,11 +6,8 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import './Three.scss';
 
 function Three() {
-  const camposi = {
-    position: [2, 8, 6],
-  };
   return <div className="Three">
-    <Canvas id="canvas" shadows={true} camera={camposi}>
+    <Canvas id="canvas" shadows={true} camera={{ position: [2, 8, 6] }}>
       {/* <ambientLight intensity={0.2} /> */}
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
@@ -37,8 +34,7 @@ function Babara(props) {
     <directionalLight />
     <axesHelper args={[5]} />
     <Suspense fallback={null}>
-      <mesh
-        ref={mesh}>
+      <mesh ref={mesh}>
         <primitive object={gltf.scene} scale={5} />
       </mesh>
     </Suspense>
@@ -46,7 +42,11 @@ function Babara(props) {
 }
 //eslint-disable-next-line
 function World() {
-  return <>
+  const ref = useRef(null);
+  useFrame(e => {
+    // ref.current.rotation.y += 0.1
+  });
+  return <mesh ref={ref}>
     <Box position={[0, 0, 3]} />
     <Box position={[3, 0, 0]} />
     <Platform position={[0, -1, 0]} />
@@ -55,7 +55,7 @@ function World() {
     <axesHelper args={[5]} />
     <Tree position={[-5, 0, 5]} />
     <MovingOb />
-  </>;
+  </mesh>;
 }
 
 function MovingOb(props) {
