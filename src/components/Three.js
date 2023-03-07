@@ -85,7 +85,8 @@ function MovingOb(props) {
 
 function Tree(props) {
   const mesh = useRef(null);
-  const texture = useLoader(THREE.TextureLoader, "./download.jpg");
+  const woodTexture = useLoader(THREE.TextureLoader, "./download.jpg");
+  const leafTexture = useLoader(THREE.TextureLoader, './leaf.jpg')
   const x = props.position[0];
   const y = props.position[1];
   const z = props.position[2];
@@ -95,19 +96,19 @@ function Tree(props) {
     receiveShadow
   >
     <ambientLight intensity={1} />
-    <NoBox position={[x, y, z]} color={'brown'} map={texture} />
-    <NoBox position={[x, y + 1, z]} color={'brown'} map={texture} />
-    <NoBox position={[x, y + 2, z]} color={'brown'} map={texture} />
-    <NoBox position={[x, y + 3, z]} color={'brown'} map={texture} />
-    <NoBox position={[x, y + 5, z]} opacity={0.7} color={'darkgreen'} />
-    <NoBox position={[x + 1, y + 3, z]} opacity={0.7} color={'darkgreen'} />
-    <NoBox position={[x + 1, y + 4, z]} opacity={0.7} color={'darkgreen'} />
-    <NoBox position={[x - 1, y + 3, z]} opacity={0.7} color={'darkgreen'} />
-    <NoBox position={[x - 1, y + 4, z]} opacity={0.7} color={'darkgreen'} />
-    <NoBox position={[x, y + 3, z + 1]} opacity={0.7} color={'darkgreen'} />
-    <NoBox position={[x, y + 4, z + 1]} opacity={0.7} color={'darkgreen'} />
-    <NoBox position={[x, y + 3, z - 1]} opacity={0.7} color={'darkgreen'} />
-    <NoBox position={[x, y + 4, z - 1]} opacity={0.7} color={'darkgreen'} />
+    <NoBox position={[x, y, z]} color={'brown'} map={woodTexture} />
+    <NoBox position={[x, y + 1, z]} color={'brown'} map={woodTexture} />
+    <NoBox position={[x, y + 2, z]} color={'brown'} map={woodTexture} />
+    <NoBox position={[x, y + 3, z]} color={'brown'} map={woodTexture} />
+    <NoBox position={[x, y + 5, z]} opacity={0.7} map={leafTexture} />
+    <NoBox position={[x + 1, y + 3, z]} opacity={0.7} map={leafTexture} />
+    <NoBox position={[x + 1, y + 4, z]} opacity={0.7} map={leafTexture} />
+    <NoBox position={[x - 1, y + 3, z]} opacity={0.7} map={leafTexture} />
+    <NoBox position={[x - 1, y + 4, z]} opacity={0.7} map={leafTexture} />
+    <NoBox position={[x, y + 3, z + 1]} opacity={0.7} map={leafTexture} />
+    <NoBox position={[x, y + 4, z + 1]} opacity={0.7} map={leafTexture} />
+    <NoBox position={[x, y + 3, z - 1]} opacity={0.7} map={leafTexture} />
+    <NoBox position={[x, y + 4, z - 1]} opacity={0.7} map={leafTexture} />
   </mesh>;
 }
 
