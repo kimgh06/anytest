@@ -30,7 +30,6 @@ function Three() {
 
 function MovingOb(props) {
   const mesh = useRef(null);
-  const texture = useLoader(THREE.TextureLoader, "./download.jpg");
   const [jump, setJump] = useState(0);
   const [isjump, setIsjump] = useState(false);
   const [x, setX] = useState(0);
@@ -74,12 +73,13 @@ function MovingOb(props) {
     position={[-2 + x, 0 + jump, -2 + z]}
     castShadow receiveShadow >
     <boxBufferGeometry args={[0.5, 1, 0.5]} />
-    <meshStandardMaterial map={texture} />
+    <meshStandardMaterial color={'blue'} />
   </mesh>;
 }
 
 function Tree(props) {
   const mesh = useRef(null);
+  const texture = useLoader(THREE.TextureLoader, "./download.jpg");
   const x = props.position[0];
   const y = props.position[1];
   const z = props.position[2];
@@ -89,10 +89,10 @@ function Tree(props) {
     receiveShadow
   >
     <ambientLight intensity={1} />
-    <NoBox position={[x, y, z]} color={'brown'} />
-    <NoBox position={[x, y + 1, z]} color={'brown'} />
-    <NoBox position={[x, y + 2, z]} color={'brown'} />
-    <NoBox position={[x, y + 3, z]} color={'brown'} />
+    <NoBox position={[x, y, z]} color={'brown'} map={texture} />
+    <NoBox position={[x, y + 1, z]} color={'brown'} map={texture} />
+    <NoBox position={[x, y + 2, z]} color={'brown'} map={texture} />
+    <NoBox position={[x, y + 3, z]} color={'brown'} map={texture} />
     <NoBox position={[x, y + 5, z]} opacity={0.7} color={'darkgreen'} />
     <NoBox position={[x + 1, y + 3, z]} opacity={0.7} color={'darkgreen'} />
     <NoBox position={[x + 1, y + 4, z]} opacity={0.7} color={'darkgreen'} />
@@ -112,7 +112,7 @@ function NoBox(props) {
     receiveShadow
   >
     <boxGeometry args={[1, 1, 1]} />
-    <meshStandardMaterial opacity={props.opacity} transparent color={props.color} />
+    <meshStandardMaterial opacity={props.opacity} transparent color={props.color} map={props.map} />
   </mesh>;
 }
 
