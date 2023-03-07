@@ -2,23 +2,35 @@ import React, { useState, useRef, Suspense, useEffect } from "react";
 import * as THREE from 'three'; //three.js 불러오기
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import './Three.scss';
-// import Elephant from "./models/Elephant";
 
 function Three() {
   const camposi = {
     position: [2, 8, 6],
   };
   return <div className="Three">
-    <Canvas id="canvas" shadows={true} camera={camposi}>
+    <Canvas linear flat id="canvas" shadows={true} camera={camposi}>
       <ambientLight intensity={0.2} />
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
-        <World />
-        {/* <Elephant /> */}
+        {/* <World /> */}
+        <Elephant />
       </Suspense>
     </Canvas>
   </div>;
+}
+
+function Elephant(props) {
+  const gltf = useLoader(GLTFLoader, './3d/scene.gltf');
+  useEffect(e => {
+    const model = gltf.scene;
+    model.position.y = -50;
+    //eslint-disable-next-line
+  }, []);
+  return <Suspense fallback={null}>
+    <primitive object={gltf.scene} />
+  </Suspense>;
 }
 
 function World() {
