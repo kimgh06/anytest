@@ -11,32 +11,30 @@ function Three() {
   };
   return <div className="Three">
     <Canvas id="canvas" shadows={true} camera={camposi}>
-      <ambientLight intensity={0.2} />
+      {/* <ambientLight intensity={0.2} /> */}
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
         {/* <World /> */}
-        <Elephant />
+        <Babara />
       </Suspense>
     </Canvas>
   </div>;
 }
 
-function Elephant(props) {
-  const gltf = useLoader(GLTFLoader, './3d/scene.gltf');
+function Babara(props) {
+  const gltf = useLoader(GLTFLoader, './babara/scene.gltf');
   useEffect(e => {
     const model = gltf.scene;
-    model.position.y = -50;
+    model.position.y = 0;
     //eslint-disable-next-line
   }, []);
-  return <Suspense fallback={null}>
-    <pointLight intensity={5} position={[1000, 0, 0]} />
-    <pointLight intensity={5} position={[-1000, 0, 0]} />
-    <pointLight intensity={5} position={[0, 0, 1000]} />
-    <pointLight intensity={5} position={[0, 0, -1000]} />
-    <pointLight intensity={5} position={[0, 1000, 0]} />
-    <pointLight intensity={5} position={[0, -1000, 0]} />
-    <primitive object={gltf.scene} />
-  </Suspense>;
+  return <>
+    <ambientLight />
+    <directionalLight />
+    <Suspense fallback={null}>
+      <primitive object={gltf.scene} scale={5} />
+    </Suspense>
+  </>;
 }
 
 function World() {
