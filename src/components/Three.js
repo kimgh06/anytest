@@ -64,16 +64,10 @@ function MovingOb(props) {
       }, 300); // 18프레임
     }
   }
-  const movecam = e => {
-    const mesh = new THREE.Mesh();
-    mesh.lookAt([0, 0, 0]);
-  };
   useEffect(e => {
     window.addEventListener('keydown', e => {
       moveob(e.key);
-      movecam();
     });
-    // eslint-disable-next-line
   }, []);
   return <mesh ref={mesh}
     position={[-2 + x, 0 + jump, -2 + z]}
