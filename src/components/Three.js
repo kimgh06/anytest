@@ -10,7 +10,7 @@ function Three() {
     position: [2, 8, 6],
   };
   return <div className="Three">
-    <Canvas linear flat id="canvas" shadows={true} camera={camposi}>
+    <Canvas id="canvas" shadows={true} camera={camposi}>
       <ambientLight intensity={0.2} />
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
@@ -29,6 +29,12 @@ function Elephant(props) {
     //eslint-disable-next-line
   }, []);
   return <Suspense fallback={null}>
+    <pointLight intensity={5} position={[1000, 0, 0]} />
+    <pointLight intensity={5} position={[-1000, 0, 0]} />
+    <pointLight intensity={5} position={[0, 0, 1000]} />
+    <pointLight intensity={5} position={[0, 0, -1000]} />
+    <pointLight intensity={5} position={[0, 1000, 0]} />
+    <pointLight intensity={5} position={[0, -1000, 0]} />
     <primitive object={gltf.scene} />
   </Suspense>;
 }
