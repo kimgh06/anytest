@@ -22,21 +22,29 @@ function Three() {
 }
 
 function Babara(props) {
+  const mesh = useRef(null);
   const gltf = useLoader(GLTFLoader, './babara/scene.gltf');
+  useFrame(e => {
+    mesh.current.rotation.y += 0.1;
+  });
   useEffect(e => {
     const model = gltf.scene;
     model.position.y = 0;
     //eslint-disable-next-line
   }, []);
-  return <>
+  return <mesh>
     <ambientLight />
     <directionalLight />
+    <axesHelper args={[5]} />
     <Suspense fallback={null}>
-      <primitive object={gltf.scene} scale={5} />
+      <mesh
+        ref={mesh}>
+        <primitive object={gltf.scene} scale={5} />
+      </mesh>
     </Suspense>
-  </>;
+  </mesh>;
 }
-
+//eslint-disable-next-line
 function World() {
   return <>
     <Box position={[0, 0, 3]} />
