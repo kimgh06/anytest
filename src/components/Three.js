@@ -1,10 +1,9 @@
 import React, { useState, useRef, Suspense, useEffect } from "react";
-// import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'; //3D 모델 불러오기 위한 로더
 import * as THREE from 'three'; //three.js 불러오기
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import './Three.scss';
-// import { BufferAttribute, BufferGeometry } from "three";
+// import Elephant from "./models/Elephant";
 
 function Three() {
   const camposi = {
@@ -15,17 +14,24 @@ function Three() {
       <ambientLight intensity={0.2} />
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
-        <Box position={[0, 0, 3]} />
-        <Box position={[3, 0, 0]} />
-        <Platform position={[0, -1, 0]} />
-        <Icosahedron />
-        <Sun position={[-2, 5, -2]} />
-        <axesHelper args={[5]} />
-        <Tree position={[-5, 0, 5]} />
-        <MovingOb />
+        <World />
+        {/* <Elephant /> */}
       </Suspense>
     </Canvas>
   </div>;
+}
+
+function World() {
+  return <>
+    <Box position={[0, 0, 3]} />
+    <Box position={[3, 0, 0]} />
+    <Platform position={[0, -1, 0]} />
+    <Icosahedron />
+    <Sun position={[-2, 5, -2]} />
+    <axesHelper args={[5]} />
+    <Tree position={[-5, 0, 5]} />
+    <MovingOb />
+  </>;
 }
 
 function MovingOb(props) {
