@@ -11,13 +11,13 @@ function Three() {
       {/* <ambientLight intensity={0.2} /> */}
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
-        {/* <World /> */}
-        <Babara />
+        <World />
+        {/* <Babara /> */}
       </Suspense>
     </Canvas>
   </div>;
 }
-
+//eslint-disable-next-line
 function Babara(props) {
   const mesh = useRef(null);
   const gltf = useLoader(GLTFLoader, './babara/scene.gltf');
@@ -43,12 +43,33 @@ function Babara(props) {
 //eslint-disable-next-line
 function World() {
   const ref = useRef(null);
+  function moveob(key) {
+    const position = ref.current.position;
+    const distance = 0.1;
+    if (key === 'ArrowUp') {
+      position.z += distance;
+    }
+    if (key === 'ArrowDown') {
+      position.z -= distance;
+    }
+    if (key === 'ArrowLeft') {
+      position.x += distance;
+    }
+    if (key === 'ArrowRight') {
+      position.x -= distance;
+    }
+  }
+  useEffect(e => {
+    window.addEventListener('keydown', e => {
+      moveob(e.key);
+    });
+  }, []);
   useFrame(e => {
-    // ref.current.rotation.y += 0.1
+    // ref.current.rotation.y -= 0.1;
   });
   return <mesh ref={ref}>
     <Box position={[0, 0, 3]} />
-    <Box position={[3, 0, 0]} />
+    {/* <Box position={[3, 0, 0]} /> */}
     <Platform position={[0, -1, 0]} />
     <Icosahedron />
     <Sun position={[-2, 5, -2]} />
