@@ -11,8 +11,8 @@ function Three() {
       {/* <ambientLight intensity={0.2} /> */}
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
-        <World />
-        {/* <Babara /> */}
+        {/* <World /> */}
+        <Babara />
       </Suspense>
     </Canvas>
   </div>;
@@ -21,12 +21,18 @@ function Three() {
 function Babara(props) {
   const mesh = useRef(null);
   const gltf = useLoader(GLTFLoader, './babara/scene.gltf');
-  useFrame(e => {
-    mesh.current.rotation.y += 0.1;
+  let mixer;
+  useFrame((s, d) => {
+    mixer?.update(d);
   });
   useEffect(e => {
-    const model = gltf.scene;
-    model.position.y = 0;
+    if (gltf.animations.length) {
+      mixer = new THREE.AnimationMixer(gltf.scene);
+      gltf.animations.forEach(clip => {
+        const action = mixer.clipAction(clip)
+        action.play();
+      });
+    }
     //eslint-disable-next-line
   }, []);
   return <mesh>
@@ -130,7 +136,7 @@ function MovingOb(props) {
     position={[-2 + x, 0 + jump, -2 + z]}
     castShadow receiveShadow >
     <boxBufferGeometry args={[0.5, 1, 0.5]} />
-    <mesh position={[-2 + x, 0.5 + jump, -2 + z]}>
+    <mesh ref={mesh} position={[-2 + x, 0.5 + jump, -2 + z]}>
       <boxBufferGeometry args={[0.3, 0.3, 0.3]} />
     </mesh>
     <meshStandardMaterial color={'blue'} />
