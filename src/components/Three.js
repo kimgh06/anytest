@@ -69,7 +69,7 @@ function World() {
   });
   return <mesh ref={ref}>
     <Box position={[0, 0, 3]} />
-    {/* <Box position={[3, 0, 0]} /> */}
+    <Box position={[3, 0, 0]} />
     <Platform position={[0, -1, 0]} />
     <Icosahedron />
     <Sun position={[-2, 5, -2]} />
@@ -96,23 +96,29 @@ function MovingOb(props) {
   });
   function moveob(key) {
     const distance = 0.1;
-    if (key === 'ArrowUp') {
-      setZ(e => e - distance);
-    }
-    if (key === 'ArrowDown') {
-      setZ(e => e + distance);
-    }
-    if (key === 'ArrowLeft') {
-      setX(e => e - distance);
-    }
-    if (key === 'ArrowRight') {
-      setX(e => e + distance);
-    }
-    if (key === ' ') {
-      setIsjump(true);
-      setTimeout(() => {
-        setIsjump(false);
-      }, 300); // 18프레임
+    switch (key) {
+      case 'ArrowUp':
+        setZ(e => e - distance);
+        break;
+      case 'ArrowDown':
+        setZ(e => e + distance);
+        break;
+      case 'ArrowLeft':
+        setX(e => e - distance);
+        break;
+      case 'ArrowRight':
+        setX(e => e + distance);
+        break;
+      case ' ':
+        setIsjump(true);
+        setTimeout(() => {
+          setIsjump(false);
+        }, 300); // 18프레임
+        break;
+      case '0':
+        mesh.current.rotation.y += 0.5;
+        break;
+      default:
     }
   }
   useEffect(e => {
@@ -124,6 +130,9 @@ function MovingOb(props) {
     position={[-2 + x, 0 + jump, -2 + z]}
     castShadow receiveShadow >
     <boxBufferGeometry args={[0.5, 1, 0.5]} />
+    <mesh position={[-2 + x, 0.5 + jump, -2 + z]}>
+      <boxBufferGeometry args={[0.3, 0.3, 0.3]} />
+    </mesh>
     <meshStandardMaterial color={'blue'} />
   </mesh>;
 }
