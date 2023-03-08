@@ -27,6 +27,7 @@ function Babara(props) {
   });
   useEffect(e => {
     if (gltf.animations.length) {
+      //eslint-disable-next-line
       mixer = new THREE.AnimationMixer(gltf.scene);
       gltf.animations.forEach(clip => {
         const action = mixer.clipAction(clip)
