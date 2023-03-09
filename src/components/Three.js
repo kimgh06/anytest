@@ -20,25 +20,25 @@ function Three() {
 
 function TextBox(props) {
   const [is, setIs] = useState(false);
+  const [posi, setPosi] = useState([0, 4, 1.5]);
   const ref = useRef(null);
-  return <mesh ref={ref}>
-    <Html position={[0, 4, 1.5]}>
-      <div className="html" onMouseOver={e => {
-        setIs(true);
-        ref.current.position.y += 0.05;
-      }} onMouseLeave={e => {
-        setIs(false);
-        ref.current.position.y -= 0.05;
-      }}>
-        {is ? <div className="textbox1">
-          hello, I'm babara
-          <div className="" />
-        </div>
-          : <div>
-            ⓘ
-          </div>}
+  return <mesh ref={ref} onPointerOver={e => {
+    setIs(true);
+    ref.current.position.y += 0.05;
+  }} onPointerLeave={e => {
+    setIs(false);
+    ref.current.position.y -= 0.05;
+  }}>
+    {is ? <Html position={posi} className="html">
+      <div className="textbox1">
+        hello, I'm babara
+        <div className="" />
       </div>
     </Html>
+      : <mesh position={posi}>
+        <sphereBufferGeometry args={[0.1]} />
+      </mesh>
+    }
   </mesh>
 }
 //eslint-disable-next-line
