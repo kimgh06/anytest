@@ -22,13 +22,13 @@ function TextBox(props) {
   const [is, setIs] = useState(false);
   const ref = useRef(null);
   return <mesh ref={ref}>
-    <Html position={[0, 4, 1]}>
+    <Html position={[0, 4, 1.5]}>
       <div className="html" onMouseOver={e => {
         setIs(true);
-        ref.current.position.y += 0.1;
+        ref.current.position.y += 0.05;
       }} onMouseLeave={e => {
         setIs(false);
-        ref.current.position.y -= 0.1;
+        ref.current.position.y -= 0.05;
       }}>
         {is ? <div className="textbox1">
           hello, I'm babara
