@@ -22,6 +22,18 @@
     .html {
       color: white;
       background-color: gray;
+
+      &:hover {
+        border-radius: 100px 100px;
+        background-color: rgba(black, 0%);
+        width: 150px;
+      }
+
+      .textbox1 {
+        padding-left: 10px;
+        border-radius: 10px 10px 10px 0px;
+        background-color: gray;
+      }
     }
   }
 }

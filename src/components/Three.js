@@ -20,15 +20,23 @@ function Three() {
 
 function TextBox(props) {
   const [is, setIs] = useState(false);
-  return <mesh>
+  const ref = useRef(null);
+  return <mesh ref={ref}>
     <Html position={[0, 4, 1]}>
-      <div className="html" onMouseOver={e => setIs(true)} onMouseLeave={e => setIs(false)}>
-        {is ? <>
-          This is babara
-        </>
-          : <>
-            ■
-          </>}
+      <div className="html" onMouseOver={e => {
+        setIs(true);
+        ref.current.position.y += 0.1;
+      }} onMouseLeave={e => {
+        setIs(false);
+        ref.current.position.y -= 0.1;
+      }}>
+        {is ? <div className="textbox1">
+          hello, I'm babara
+          <div className="" />
+        </div>
+          : <div>
+            ⓘ
+          </div>}
       </div>
     </Html>
   </mesh>
