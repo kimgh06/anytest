@@ -27,7 +27,7 @@ function TextBox(props) {
           This is babara
         </>
           : <>
-            hover me
+            ■
           </>}
       </div>
     </Html>
