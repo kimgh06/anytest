@@ -1,7 +1,7 @@
 import React, { useState, useRef, Suspense, useEffect } from "react";
 import * as THREE from 'three'; //three.js 불러오기
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { Html, OrbitControls } from "@react-three/drei";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import './Three.scss';
 
@@ -16,6 +16,14 @@ function Three() {
       </Suspense>
     </Canvas>
   </div>;
+}
+
+function TextBox(props) {
+  return <mesh>
+    <Html position={[0, 3, 0]} onDrag={false}>
+      <div>this is babara</div>
+    </Html>
+  </mesh>
 }
 //eslint-disable-next-line
 function Babara(props) {
@@ -40,6 +48,7 @@ function Babara(props) {
     <ambientLight />
     <directionalLight />
     <axesHelper args={[5]} />
+    <TextBox />
     <Suspense fallback={null}>
       <mesh ref={mesh}>
         <primitive object={gltf.scene} scale={5} />
