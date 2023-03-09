@@ -20,7 +20,7 @@ function Three() {
 
 function TextBox(props) {
   return <mesh>
-    <Html position={[0, 3, 0]} onDrag={false}>
+    <Html position={[0, 4, 1]} >
       <div>this is babara</div>
     </Html>
   </mesh>
