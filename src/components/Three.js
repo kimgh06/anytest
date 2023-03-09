@@ -22,7 +22,7 @@ function TextBox(props) {
   const [is, setIs] = useState(false);
   return <mesh>
     <Html position={[0, 4, 1]}>
-      <div onMouseOver={e => setIs(true)} onMouseLeave={e => setIs(false)}>
+      <div className="html" onMouseOver={e => setIs(true)} onMouseLeave={e => setIs(false)}>
         {is ? <>
           This is babara
         </>

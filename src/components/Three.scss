@@ -13,11 +13,15 @@
 
   #canvas {
     div {
-      color: white;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
+    }
+
+    .html {
+      color: white;
+      background-color: gray;
     }
   }
 }
