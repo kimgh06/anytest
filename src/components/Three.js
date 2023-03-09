@@ -19,9 +19,17 @@ function Three() {
 }
 
 function TextBox(props) {
+  const [is, setIs] = useState(false);
   return <mesh>
-    <Html position={[0, 4, 1]} >
-      <div>this is babara</div>
+    <Html position={[0, 4, 1]}>
+      <div onMouseOver={e => setIs(true)} onMouseLeave={e => setIs(false)}>
+        {is ? <>
+          This is babara
+        </>
+          : <>
+            hover me
+          </>}
+      </div>
     </Html>
   </mesh>
 }
