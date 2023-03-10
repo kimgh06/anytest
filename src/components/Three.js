@@ -8,11 +8,10 @@ import './Three.scss';
 function Three() {
   return <div className="Three">
     <Canvas id="canvas" shadows={true} camera={{ position: [2, 8, 6] }}>
-      {/* <ambientLight intensity={0.2} /> */}
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
-        {/* <World /> */}
-        <Babara />
+        <World />
+        {/* <Babara /> */}
       </Suspense>
     </Canvas>
   </div>;
@@ -26,7 +25,7 @@ function TextBox(props) {
     setPosi([0, 4, 1.5]);
   }, []);
   return <mesh ref={ref}>
-    <Html position={[posi[0] - 0.1, posi[1] + 0.2, posi[2]]} className="html" style={{ display: is ? 'block' : 'none' }}>
+    <Html position={[posi[0] - 0.1, posi[1] + 0.2, posi[2] - 0.1]} className="html" style={{ display: is ? 'block' : 'none' }}>
       <div className="textbox1"
         onMouseLeave={e => setIs(false)}
       >
@@ -40,6 +39,7 @@ function TextBox(props) {
     </mesh>
   </mesh >
 }
+
 //eslint-disable-next-line
 function Babara(props) {
   const mesh = useRef(null);
@@ -71,6 +71,7 @@ function Babara(props) {
     </Suspense>
   </mesh>;
 }
+
 //eslint-disable-next-line
 function World() {
   const ref = useRef(null);
@@ -161,7 +162,7 @@ function MovingOb(props) {
     position={[-2 + x, 0 + jump, -2 + z]}
     castShadow receiveShadow >
     <boxBufferGeometry args={[0.5, 1, 0.5]} />
-    <mesh ref={mesh} position={[-2 + x, 0.5 + jump, -2 + z]}>
+    <mesh ref={mesh} position={[0, 0.2, -0.15]}>
       <boxBufferGeometry args={[0.3, 0.3, 0.3]} />
     </mesh>
     <meshStandardMaterial color={'blue'} />
