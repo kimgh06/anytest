@@ -22,25 +22,19 @@ function TextBox(props) {
   const [is, setIs] = useState(false);
   const [posi, setPosi] = useState([]);
   const ref = useRef(null);
-  const up = e => {
-    setIs(true);
-  }
-  const down = e => {
-    setIs(false);
-  }
   useEffect(e => {
     setPosi([0, 4, 1.5]);
   }, []);
   return <mesh ref={ref}>
-    <Html position={posi} className="html" style={{ display: is ? 'block' : 'none' }}>
+    <Html position={[posi[0] - 0.1, posi[1] + 0.2, posi[2]]} className="html" style={{ display: is ? 'block' : 'none' }}>
       <div className="textbox1"
-        onMouseLeave={e => down()}
+        onMouseLeave={e => setIs(false)}
       >
         hello, I'm babara
       </div>
     </Html>
     <mesh visible={!is} position={posi}
-      onPointerOver={e => up()}
+      onPointerOver={e => setIs(true)}
     >
       <sphereBufferGeometry args={[0.08]} />
     </mesh>
