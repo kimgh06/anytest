@@ -20,26 +20,31 @@ function Three() {
 
 function TextBox(props) {
   const [is, setIs] = useState(false);
-  const [posi, setPosi] = useState([0, 4, 1.5]);
+  const [posi, setPosi] = useState([]);
   const ref = useRef(null);
-  return <mesh ref={ref} onPointerOver={e => {
+  const up = e => {
     setIs(true);
-    ref.current.position.y += 0.05;
-  }} onPointerLeave={e => {
+  }
+  const down = e => {
     setIs(false);
-    ref.current.position.y -= 0.05;
-  }}>
-    {is ? <Html position={posi} className="html">
-      <div className="textbox1">
+  }
+  useEffect(e => {
+    setPosi([0, 4, 1.5]);
+  }, []);
+  return <mesh ref={ref}>
+    <Html position={posi} className="html" style={{ display: is ? 'block' : 'none' }}>
+      <div className="textbox1"
+        onMouseLeave={e => down()}
+      >
         hello, I'm babara
-        <div className="" />
       </div>
     </Html>
-      : <mesh position={posi}>
-        <sphereBufferGeometry args={[0.1]} />
-      </mesh>
-    }
-  </mesh>
+    <mesh visible={!is} position={posi}
+      onPointerOver={e => up()}
+    >
+      <sphereBufferGeometry args={[0.08]} />
+    </mesh>
+  </mesh >
 }
 //eslint-disable-next-line
 function Babara(props) {
