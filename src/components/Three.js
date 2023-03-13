@@ -160,6 +160,7 @@ function MovingOb(props) {
       keyp.delete(e.key);
       moveob();
     });
+    //eslint-disable-next-line
   }, []);
   return <mesh ref={mesh}
     position={[-2 + x, 0 + jump, -2 + z]}
