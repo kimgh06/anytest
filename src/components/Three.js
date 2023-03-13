@@ -10,8 +10,8 @@ function Three() {
     <Canvas id="canvas" shadows={true} camera={{ position: [2, 8, 6] }}>
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
-        <World />
-        {/* <Babara /> */}
+        {/* <World /> */}
+        <Capybara />
       </Suspense>
     </Canvas>
   </div>;
@@ -29,7 +29,7 @@ function TextBox(props) {
       <div className="textbox1"
         onMouseLeave={e => setIs(false)}
       >
-        hello, I'm babara
+        hello, I'm Capybara
       </div>
     </Html>
     <mesh visible={!is} position={posi}
@@ -41,7 +41,7 @@ function TextBox(props) {
 }
 
 //eslint-disable-next-line
-function Babara(props) {
+function Capybara(props) {
   const mesh = useRef(null);
   const gltf = useLoader(GLTFLoader, './babara/scene.gltf');
   let mixer;
