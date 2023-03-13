@@ -120,11 +120,11 @@ function MovingOb(props) {
   const [z, setZ] = useState(0);
   useFrame(e => {
     if (isjump) {
-      setJump(e => Math.sin(mesh.current.position.y - 50));
-      console.log(Math.asin(jump) * 180 / Math.PI);
+      setJump(e => Math.sin(mesh.current.position.y - 30));
     }
     else {
       setJump(e => Math.sin(0));
+      setJump(e => Math.sin(mesh.current.position.y + 0));
     }
   });
   function moveob() {
@@ -145,7 +145,7 @@ function MovingOb(props) {
       setIsjump(true);
       setTimeout(() => {
         setIsjump(false);
-      }, 300); // 18프레임
+      }, 100); // 6프레임
     }
     if (keyp.has('0')) {
       mesh.current.rotation.y += 0.5;
