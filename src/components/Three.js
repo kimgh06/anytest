@@ -10,8 +10,8 @@ function Three() {
     <Canvas id="canvas" shadows={true} camera={{ position: [2, 8, 6] }}>
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
-        {/* <World /> */}
-        <Babara />
+        <World />
+        {/* <Babara /> */}
       </Suspense>
     </Canvas>
   </div>;
