@@ -10,8 +10,8 @@ function Three() {
     <Canvas id="canvas" shadows={true} camera={{ position: [2, 8, 6] }}>
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
-        {/* <World /> */}
-        <Capybara />
+        <World />
+        {/* <Capybara /> */}
       </Suspense>
     </Canvas>
   </div>;
@@ -99,7 +99,7 @@ function World() {
   useFrame(e => {
     // ref.current.rotation.y -= 0.1;
   });
-  return <mesh ref={ref}>
+  return <mesh >
     <Box position={[0, 0, 3]} />
     <Box position={[3, 0, 0]} />
     <Platform position={[0, -1, 0]} />
@@ -113,6 +113,7 @@ function World() {
 
 function MovingOb(props) {
   const mesh = useRef(null);
+  let keyp = new Set();
   const [jump, setJump] = useState(0);
   const [isjump, setIsjump] = useState(false);
   const [x, setX] = useState(0);
@@ -126,36 +127,38 @@ function MovingOb(props) {
       setJump(e => Math.sin(0));
     }
   });
-  function moveob(key) {
+  function moveob() {
     const distance = 0.1;
-    switch (key) {
-      case 'ArrowUp':
-        setZ(e => e - distance);
-        break;
-      case 'ArrowDown':
-        setZ(e => e + distance);
-        break;
-      case 'ArrowLeft':
-        setX(e => e - distance);
-        break;
-      case 'ArrowRight':
-        setX(e => e + distance);
-        break;
-      case ' ':
-        setIsjump(true);
-        setTimeout(() => {
-          setIsjump(false);
-        }, 300); // 18프레임
-        break;
-      case '0':
-        mesh.current.rotation.y += 0.5;
-        break;
-      default:
+    if (keyp.has('ArrowUp')) {
+      setZ(e => e - distance);
+    }
+    if (keyp.has('ArrowDown')) {
+      setZ(e => e + distance);
+    }
+    if (keyp.has('ArrowLeft')) {
+      setX(e => e - distance);
+    }
+    if (keyp.has('ArrowRight')) {
+      setX(e => e + distance);
+    }
+    if (keyp.has(' ')) {
+      setIsjump(true);
+      setTimeout(() => {
+        setIsjump(false);
+      }, 300); // 18프레임
+    }
+    if (keyp.has('0')) {
+      mesh.current.rotation.y += 0.5;
     }
   }
   useEffect(e => {
     window.addEventListener('keydown', e => {
-      moveob(e.key);
+      keyp.add(e.key);
+      moveob();
+    });
+    window.addEventListener('keyup', e => {
+      keyp.delete(e.key);
+      moveob();
     });
   }, []);
   return <mesh ref={mesh}
