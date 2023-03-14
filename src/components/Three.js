@@ -19,6 +19,12 @@ function Three() {
 }
 
 function Instances({ position, count }) {
+  const ref = useRef(null);
+  useFrame(e => {
+    ref.current.rotation.x += 0.01;
+    ref.current.rotation.y += 0.01;
+    ref.current.rotation.z += 0.01;
+  });
   const meshArray = [];
   for (let i = 0; i < count; i++) {
     for (let j = 0; j < count; j++) {
@@ -32,7 +38,7 @@ function Instances({ position, count }) {
       }
     }
   }
-  return <>{meshArray}</>;
+  return <mesh ref={ref}>{meshArray}</mesh>;
 }
 
 function TextBox(props) {
