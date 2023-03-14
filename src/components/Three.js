@@ -99,7 +99,7 @@ function World() {
   useFrame(e => {
     // ref.current.rotation.y -= 0.1;
   });
-  return <mesh >
+  return <mesh ref={ref} >
     <Box position={[0, 0, 3]} />
     <Box position={[3, 0, 0]} />
     <Platform position={[0, -1, 0]} />
