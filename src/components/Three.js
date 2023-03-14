@@ -25,12 +25,13 @@ function Instances({ position, count }) {
     ref.current.rotation.y += 0.01;
     ref.current.rotation.z += 0.01;
   });
+  const [distance, setDistance] = useState(2);
   const meshArray = [];
   for (let i = 0; i < count; i++) {
     for (let j = 0; j < count; j++) {
       for (let k = 0; k < count; k++) {
         meshArray.push(
-          <mesh key={i} position={[position[0] + j * 2, position[1] + i * 2, position[2] + k * 2]}>
+          <mesh key={i} position={[position[0] + j * distance, position[1] + i * distance, position[2] + k * distance]}>
             <Box />
             <meshStandardMaterial attach="material" />
           </mesh>
@@ -38,7 +39,7 @@ function Instances({ position, count }) {
       }
     }
   }
-  return <mesh ref={ref}>{meshArray}</mesh>;
+  return <mesh ref={ref} onPointerOver={e => setDistance(e => e * 2)} onPointerOut={e => setDistance(e => e / 2)} >{meshArray}</mesh>;
 }
 
 function TextBox(props) {
