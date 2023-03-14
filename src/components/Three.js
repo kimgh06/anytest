@@ -10,11 +10,29 @@ function Three() {
     <Canvas id="canvas" shadows={true} camera={{ position: [2, 8, 6] }}>
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
-        <World />
+        {/* <World /> */}
         {/* <Capybara /> */}
+        <Instances position={[0, 0, 0]} count={10} />
       </Suspense>
     </Canvas>
   </div>;
+}
+
+function Instances({ position, count }) {
+  const meshArray = [];
+  for (let i = 0; i < count; i++) {
+    for (let j = 0; j < count; j++) {
+      for (let k = 0; k < count; k++) {
+        meshArray.push(
+          <mesh key={i} position={[position[0] + j * 2, position[1] + i * 2, position[2] + k * 2]}>
+            <Box />
+            <meshStandardMaterial attach="material" />
+          </mesh>
+        );
+      }
+    }
+  }
+  return <>{meshArray}</>;
 }
 
 function TextBox(props) {
@@ -96,9 +114,6 @@ function World() {
       // moveob(e.key);
     });
   }, []);
-  useFrame(e => {
-    // ref.current.rotation.y -= 0.1;
-  });
   return <mesh ref={ref}>
     <Box position={[0, 0, 3]} />
     <Box position={[3, 0, 0]} />
