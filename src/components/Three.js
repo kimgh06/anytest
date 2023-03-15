@@ -11,11 +11,23 @@ function Three() {
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
         {/* <World /> */}
+        <axesHelper args={[50]} />
         {/* <Capybara /> */}
-        <Instances position={[0, 0, 0]} count={10} />
+        {/* <Instances position={[0, 0, 0]} count={10} /> */}
+        <Vector />
       </Suspense>
     </Canvas>
   </div>;
+}
+
+function Vector() {
+  const posi1 = new THREE.Vector3(1, 2, 3);
+  const posi2 = new THREE.Vector3(4, 5, 6);
+  const sum = posi1.clone().add(posi2);
+  return <mesh position={sum}>
+    <boxGeometry />
+    <meshStandardMaterial color={'white'} />
+  </mesh>
 }
 
 function Instances({ position, count }) {
@@ -31,7 +43,8 @@ function Instances({ position, count }) {
     for (let j = 0; j < count; j++) {
       for (let k = 0; k < count; k++) {
         meshArray.push(
-          <mesh key={i} position={[position[0] + j * distance, position[1] + i * distance, position[2] + k * distance]}>
+          <mesh key={i} position={[position[0] + j * distance,
+          position[1] + i * distance, position[2] + k * distance]}>
             <Box />
             <meshStandardMaterial attach="material" />
           </mesh>
@@ -39,7 +52,9 @@ function Instances({ position, count }) {
       }
     }
   }
-  return <mesh ref={ref} onPointerOver={e => setDistance(e => e * 2)} onPointerOut={e => setDistance(e => e / 2)} >{meshArray}</mesh>;
+  return <mesh ref={ref} onPointerOver={e => setDistance(e => e * 3)} onPointerOut={e => setDistance(e => e / 3)} >
+    {meshArray}
+  </mesh>;
 }
 
 function TextBox(props) {
