@@ -13,8 +13,8 @@ function Three() {
         {/* <World /> */}
         <axesHelper args={[50]} />
         {/* <Capybara /> */}
-        {/* <Instances position={[0, 0, 0]} count={10} /> */}
-        <VectorLine />
+        <Instances position={[0, 0, 0]} count={10} />
+        {/* <VectorLine /> */}
       </Suspense>
     </Canvas>
   </div>;
