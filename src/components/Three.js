@@ -14,20 +14,28 @@ function Three() {
         <axesHelper args={[50]} />
         {/* <Capybara /> */}
         {/* <Instances position={[0, 0, 0]} count={10} /> */}
-        <Vector />
+        <VectorLine />
       </Suspense>
     </Canvas>
   </div>;
 }
 
-function Vector() {
-  const posi1 = new THREE.Vector3(1, 2, 3);
-  const posi2 = new THREE.Vector3(4, 5, 6);
-  const sum = posi1.clone().add(posi2);
-  return <mesh position={sum}>
-    <boxGeometry />
-    <meshStandardMaterial color={'white'} />
-  </mesh>
+function VectorLine() {
+  const ref = useRef();
+  const points = [];
+  points.push(new THREE.Vector3(1, 2, 3));
+  points.push(new THREE.Vector3(10, 2, 3));
+  points.push(new THREE.Vector3(1, 20, 3));
+  points.push(new THREE.Vector3(1, 2, 30));
+  points.push(new THREE.Vector3(1, 12, 3));
+  points.push(new THREE.Vector3(15, 2, 3));
+  const lineGeo = new THREE.BufferGeometry().setFromPoints(points);
+
+  return <group position={[0, 0, 0]}>
+    <line ref={ref} geometry={lineGeo}>
+      <lineBasicMaterial attach={"material"} color={'white'} linewidth={10} linecap={'round'} linejoin={'round'} />
+    </line>
+  </group>;
 }
 
 function Instances({ position, count }) {
