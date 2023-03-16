@@ -13,8 +13,8 @@ function Three() {
         {/* <World /> */}
         <axesHelper args={[50]} />
         {/* <Capybara /> */}
-        <Instances position={[0, 0, 0]} count={10} />
-        {/* <VectorLine /> */}
+        {/* <Instances position={[0, 0, 0]} count={10} /> */}
+        <VectorLine />
       </Suspense>
     </Canvas>
   </div>;
@@ -38,6 +38,7 @@ function VectorLine() {
   </group>;
 }
 
+//eslint-disable-next-line
 function Instances({ position, count }) {
   const ref = useRef(null);
   useFrame(e => {
