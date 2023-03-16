@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 // import App from './components/App';
 // import Thumbnail from './components/Thumbnail';
+// import DDD from './components/ddd';
 import Three from './components/Three';
 import reportWebVitals from './reportWebVitals';
 
@@ -11,6 +12,7 @@ root.render(
     {/* <App /> */}
     {/* <Thumbnail /> */}
     <Three />
+    {/* <DDD /> */}
   </>
 );
 
