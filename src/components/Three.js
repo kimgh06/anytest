@@ -12,9 +12,9 @@ function Three() {
         <OrbitControls autoRotate={false} />
         {/* <World /> */}
         <axesHelper args={[50]} />
-        {/* <Capybara /> */}
+        <Capybara />
         {/* <Instances position={[0, 0, 0]} count={10} /> */}
-        <VectorLine />
+        {/* <VectorLine /> */}
       </Suspense>
     </Canvas>
   </div>;
