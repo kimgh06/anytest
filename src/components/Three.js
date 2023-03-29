@@ -10,9 +10,9 @@ function Three() {
     <Canvas id="canvas" shadows={true} camera={{ position: [2, 8, 6] }}>
       <Suspense fallback={null}>
         <OrbitControls autoRotate={false} />
-        {/* <World /> */}
+        <World />
         <axesHelper args={[50]} />
-        <Capybara />
+        {/* <Capybara /> */}
         {/* <Instances position={[0, 0, 0]} count={10} /> */}
         {/* <VectorLine /> */}
       </Suspense>
