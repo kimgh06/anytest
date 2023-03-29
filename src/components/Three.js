@@ -124,27 +124,7 @@ function Capybara(props) {
 //eslint-disable-next-line
 function World() {
   const ref = useRef(null);
-  // function movecam(key) {
-  //   const position = ref.current.position;
-  //   const distance = 0.1;
-  //   if (key === 'ArrowUp') {
-  //     position.z += distance;
-  //   }
-  //   if (key === 'ArrowDown') {
-  //     position.z -= distance;
-  //   }
-  //   if (key === 'ArrowLeft') {
-  //     position.x += distance;
-  //   }
-  //   if (key === 'ArrowRight') {
-  //     position.x -= distance;
-  //   }
-  // }
-  useEffect(e => {
-    window.addEventListener('keydown', e => {
-      // moveob(e.key);
-    });
-  }, []);
+  const [is, setIs] = useState(false);
   return <mesh ref={ref}>
     <Box position={[0, 0, 3]} />
     <Box position={[3, 0, 0]} />
@@ -154,6 +134,18 @@ function World() {
     <axesHelper args={[5]} />
     <Tree position={[-5, 0, 5]} />
     <MovingOb />
+    <Html className="html" style={{ display: is ? 'block' : 'none' }}>
+      <div className="textbox1"
+        onMouseLeave={e => setIs(false)}
+      >
+        if you want to move the purple object, press 'space', '0', and 'Arrow key'
+      </div>
+    </Html>
+    <mesh visible={!is}
+      onPointerOver={e => setIs(true)}
+    >
+      <sphereBufferGeometry args={[0.2]} />
+    </mesh>
   </mesh>;
 }
 
